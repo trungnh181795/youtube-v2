@@ -1,7 +1,11 @@
-import React from "react";
-import { Stack } from "@mui/material";
+import {
+  ContainerStack,
+  CategoryButton,
+  CategoryIcon,
+  CategoryName,
+} from "./style";
 
-import { categories } from "../../utils/constants";
+import { categories } from "../../utils";
 
 const Sidebar = ({ selectedCategory, onCategoryChange }) => {
   const handleOnClick = (category) => {
@@ -9,42 +13,24 @@ const Sidebar = ({ selectedCategory, onCategoryChange }) => {
   };
 
   return (
-    <Stack
-      direction="row"
-      sx={{
-        overflowY: "auto",
-        height: { sx: "auto", md: "95%" },
-        flexDirection: { md: "column" },
-      }}
-    >
+    <ContainerStack direction="row">
       {categories.map((category) => (
-        <button
+        <CategoryButton
+          category={category}
+          selectedCategory={selectedCategory}
           className="category-btn"
-          style={{
-            background: category.name === selectedCategory && "#FC1503",
-            color: "#FFFFFF",
-          }}
           key={category.name}
           onClick={() => handleOnClick(category.name)}
         >
-          <span
-            style={{
-              color: category.name === selectedCategory ? "#FFFFFF" : "red",
-              marginRight: "15px",
-            }}
-          >
+          <CategoryIcon category={category} selectedCategory={selectedCategory}>
             {category.icon}
-          </span>
-          <span
-            style={{
-              opacity: category.name === selectedCategory ? "1" : "0.8",
-            }}
-          >
+          </CategoryIcon>
+          <CategoryName category={category} selectedCategory={selectedCategory}>
             {category.name}
-          </span>
-        </button>
+          </CategoryName>
+        </CategoryButton>
       ))}
-    </Stack>
+    </ContainerStack>
   );
 };
 

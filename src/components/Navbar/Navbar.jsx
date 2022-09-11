@@ -1,31 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
-import { logo } from "../../utils/constants";
+import { ContainerStack, Logo } from "./style";
+import { Typography } from "@mui/material";
+import { logo } from "../../utils";
 
-import SearchBar from '../SearchBar'
+import SearchBar from "../SearchBar";
 
 const Navbar = () => {
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      p={2}
-      sx={{
-        position: "sticky",
-        background: "#000000",
-        top: 0,
-        justifyContent: "space-between",
-        zIndex: 10
-      }}
-    >
-      <Link to="/" style={{ display: "flex", alignItems: "center" }}>
+    <ContainerStack direction="row" alignItems="center" p={2}>
+      <Logo to="/">
         <img src={logo} alt="logo" height={45} />
-        <Typography px={2} variant="h6" color="#FFFFFF">Youtube V2</Typography>
-      </Link> 
+        <Typography px={2} variant="h6" color="#FFFFFF">
+          Youtube V2
+        </Typography>
+      </Logo>
 
       <SearchBar />
-    </Stack>
+    </ContainerStack>
   );
 };
 
